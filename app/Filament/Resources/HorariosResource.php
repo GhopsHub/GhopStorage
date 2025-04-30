@@ -10,12 +10,18 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Carbon\Carbon;
+use Filament\Tables\Actions\ReplicateAction;
 
 class HorariosResource extends Resource
 {
     protected static ?string $model = Horario::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clock';
+
+    public static function getNavigationSort(): ?int
+    {
+        return 4;
+    }
 
     public static function form(Form $form): Form
     {
@@ -62,14 +68,15 @@ class HorariosResource extends Resource
             ]);
     }
 
-
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable()
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('hora_inicio')
                     ->label('Hora de inicio')
                     ->sortable()
@@ -79,37 +86,64 @@ class HorariosResource extends Resource
                     ->label('Hora de fin')
                     ->sortable()
                     ->formatStateUsing(fn($state) => Carbon::parse($state)->format('h:i A')),
+
                 Tables\Columns\TextColumn::make('estado')
                     ->label('Estado')
                     ->formatStateUsing(fn($state) => $state ? 'Activo' : 'Inactivo')
                     ->badge()
                     ->color(fn($state) => $state ? 'success' : 'danger'),
-
-
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('estado')
+                    ->label('Estado')
                     ->options([
                         true => 'Activo',
                         false => 'Inactivo',
-                    ])
+                    ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make()->icon('heroicon-m-pencil-square'),
+                    Tables\Actions\DeleteAction::make()->icon('heroicon-m-trash'),
+                    ReplicateAction::make()->icon('heroicon-m-document-duplicate'),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\BulkAction::make('cambiarEstado')
+                        ->label('Cambiar estado')
+                        ->icon('heroicon-m-adjustments-horizontal')
+                        ->form([
+                            Forms\Components\Select::make('nuevo_estado')
+                                ->label('Nuevo estado')
+                                ->options([
+                                    true => 'Activo',
+                                    false => 'Inactivo',
+                                ])
+                                ->required(),
+                        ])
+                        ->action(function ($records, array $data) {
+                            $records->each(function ($record) use ($data) {
+                                $record->update([
+                                    'estado' => $data['nuevo_estado'],
+                                ]);
+                            });
+                        })
+                        ->successNotificationTitle('Estado actualizado correctamente'),
                     Tables\Actions\DeleteBulkAction::make(),
+
                 ]),
-            ]);
+            ])
+
+            ->striped();
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+    // public static function getRelations(): array
+    // {
+    //     return [
+    //         //
+    //     ];
+    // }
 
     public static function getPages(): array
     {

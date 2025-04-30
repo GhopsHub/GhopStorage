@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('horarios', function (Blueprint $table) {
+        Schema::create('herramientas', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
-            $table->boolean('estado')->default(1);
-            $table->timestamps();
+            $table->string('nombre');
+            $table->string('tipo');
+            $table->string('marca');
+            $table->string('estado')->default(true);
+            $table->integer('unidades');
+            $table->string('observaciones');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('horarios');
+        Schema::dropIfExists('herramientas');
     }
 };
