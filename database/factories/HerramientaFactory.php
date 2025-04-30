@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Herramientas;
+use App\Models\Herramienta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Herramientas>
  */
-class HerramientasFactory extends Factory
+class HerramientaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,7 +16,7 @@ class HerramientasFactory extends Factory
      * @return array<string, mixed>
      */
 
-    protected $model = Herramientas::class;
+    protected $model = Herramienta::class;
 
     public function definition(): array
     {

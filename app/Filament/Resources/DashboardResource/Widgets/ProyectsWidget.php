@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\DashboardResource\Widgets;
 
-use App\Models\Proyectos;
+use App\Models\Proyecto;
 use EightyNine\FilamentAdvancedWidget\AdvancedStatsOverviewWidget;
 use EightyNine\FilamentAdvancedWidget\AdvancedStatsOverviewWidget\Stat;
 
@@ -12,10 +12,10 @@ class ProyectsWidget extends AdvancedStatsOverviewWidget
 
     protected function getStats(): array
     {
-        $activos = Proyectos::where('estado', 'activo')->count();
-        $finalizados = Proyectos::where('estado', 'finalizado')->count();
-        $pendientes = Proyectos::where('estado', 'pendiente')->count();
-        $cancelados = Proyectos::where('estado', 'cancelado')->count();
+        $activos = Proyecto::where('estado', 'activo')->count();
+        $finalizados = Proyecto::where('estado', 'finalizado')->count();
+        $pendientes = Proyecto::where('estado', 'pendiente')->count();
+        $cancelados = Proyecto::where('estado', 'cancelado')->count();
 
         $isDarkMode = config('filament.dark_mode');
 
@@ -26,7 +26,7 @@ class ProyectsWidget extends AdvancedStatsOverviewWidget
                 ->backgroundColor($isDarkMode ? 'gray-700' : 'white')
                 ->iconColor($isDarkMode ? 'white' : 'black')
                 ->color($isDarkMode ? 'white' : 'black')
-                ->description('Proyectos activos')
+                ->description('Proyecto activos')
                 ->descriptionColor('success')
                 ->iconColor('success'),
 
@@ -37,7 +37,7 @@ class ProyectsWidget extends AdvancedStatsOverviewWidget
                 ->backgroundColor($isDarkMode ? 'gray-700' : 'white')
                 ->iconColor($isDarkMode ? 'white' : 'black')
                 ->color($isDarkMode ? 'white' : 'black')
-                ->description('Proyectos pendientes')
+                ->description('Proyecto pendientes')
                 ->descriptionColor('warning')
                 ->iconColor('warning'),
 
@@ -48,7 +48,7 @@ class ProyectsWidget extends AdvancedStatsOverviewWidget
                 ->backgroundColor($isDarkMode ? 'gray-700' : 'white')
                 ->iconColor($isDarkMode ? 'white' : 'black')
                 ->color($isDarkMode ? 'white' : 'black')
-                ->description('Proyectos finalizados')
+                ->description('Proyecto finalizados')
                 ->descriptionColor('info')
                 ->iconColor('info'),
 
@@ -59,7 +59,7 @@ class ProyectsWidget extends AdvancedStatsOverviewWidget
                 ->backgroundColor($isDarkMode ? 'gray-700' : 'white')
                 ->iconColor($isDarkMode ? 'white' : 'black')
                 ->color($isDarkMode ? 'white' : 'black')
-                ->description('Proyectos cancelados')
+                ->description('Proyecto cancelados')
                 ->descriptionColor('danger')
                 ->iconColor('danger'),
         ];

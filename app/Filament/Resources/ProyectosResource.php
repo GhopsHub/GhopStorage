@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProyectosResource\Pages;
 use App\Filament\Resources\ProyectosResource\RelationManagers;
-use App\Models\Proyectos;
+use App\Models\Proyecto;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProyectosResource extends Resource
 {
-    protected static ?string $model = Proyectos::class;
+    protected static ?string $model = Proyecto::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard';
 

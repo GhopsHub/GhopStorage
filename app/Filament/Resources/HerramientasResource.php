@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HerramientasResource\Pages;
 use App\Filament\Resources\HerramientasResource\RelationManagers;
-use App\Models\Herramientas;
+use App\Models\Herramienta;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class HerramientasResource extends Resource
 {
-    protected static ?string $model = Herramientas::class;
+    protected static ?string $model = Herramienta::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-wrench';
 

@@ -9,7 +9,7 @@ class Maquinaria extends Model
 {
     use HasFactory;
 
-    protected $table = 'maquinaria';
+    protected $table = 'Maquinaria';
 
     protected $fillable = [
         'tipo',

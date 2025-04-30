@@ -6,7 +6,7 @@ use App\Models\Horario;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
-class HorariosSeeder extends Seeder
+class HorarioSeeder extends Seeder
 {
     /**
      * Run the database seeds.

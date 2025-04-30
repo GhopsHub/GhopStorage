@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Proyectos;
+use App\Models\Proyecto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Proyectos>
  */
-class ProyectosFactory extends Factory
+class ProyectoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,7 +16,7 @@ class ProyectosFactory extends Factory
      * @return array<string, mixed>
      */
 
-    protected $model = Proyectos::class;
+    protected $model = Proyecto::class;
 
     public function definition(): array
     {
