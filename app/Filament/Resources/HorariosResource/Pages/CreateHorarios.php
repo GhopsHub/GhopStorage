@@ -6,14 +6,13 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\HorariosResource;
 
-class Createhorario extends CreateRecord
+class CreateHorario extends CreateRecord
 {
-    protected static string $resource = HorariosResource::class;
+	protected static string $resource = HorariosResource::class;
 
-
-    //? Redireccion al index posterior a guargar
-    public function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
+	//? Redireccion al index posterior a guargar
+	public function getRedirectUrl(): string
+	{
+		return $this->getResource()::getUrl('index');
+	}
 }
