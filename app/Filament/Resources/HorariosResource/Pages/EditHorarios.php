@@ -16,4 +16,18 @@ class Edithorario extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+
+    //? Redireccion al index posterior a guargar
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+
+    //? Titulo dinamico
+    public function getTitle(): string
+    {
+        return 'Editar: ' . $this->record->name;
+    }
 }

@@ -9,4 +9,11 @@ use App\Filament\Resources\HorariosResource;
 class Createhorario extends CreateRecord
 {
     protected static string $resource = HorariosResource::class;
+
+
+    //? Redireccion al index posterior a guargar
+    public function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

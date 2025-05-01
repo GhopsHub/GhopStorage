@@ -10,7 +10,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Carbon\Carbon;
-use Filament\Tables\Actions\ReplicateAction;
 
 class HorariosResource extends Resource
 {
@@ -27,46 +26,35 @@ class HorariosResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Información General')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->label('Nombre del Horario')
-                            ->placeholder('Ej: Mañana')
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(ignoreRecord: true),
-                    ])
-                    ->columns(1)
-                    ->collapsible(),
+                Forms\Components\TextInput::make('name')
+                    ->label('Nombre del Horario')
+                    ->placeholder('Ej: Mañana')
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true),
 
-                Forms\Components\Section::make('Detalles del Horario')
+                Forms\Components\Grid::make(4)
                     ->schema([
-                        Forms\Components\Grid::make(2)
-                            ->schema([
-                                Forms\Components\TimePicker::make('hora_inicio')
-                                    ->label('Hora de Inicio')
-                                    ->required(),
+                        Forms\Components\TimePicker::make('hora_inicio')->seconds(false)
+                            ->label('Hora de Inicio')
+                            ->required(),
 
-                                Forms\Components\TimePicker::make('hora_fin')
-                                    ->label('Hora de Fin')
-                                    ->required(),
-                            ]),
-                    ])
-                    ->columns(1)
-                    ->collapsible(),
+                        Forms\Components\TimePicker::make('hora_fin')->seconds(false)
+                            ->label('Hora de Fin')
+                            ->required(),
 
-                Forms\Components\Section::make('Estado')
-                    ->schema([
-                        Forms\Components\Toggle::make('estado')
-                            ->label('¿Está Activo?')
-                            ->default(true)
-                            ->onColor('success')
-                            ->offColor('danger'),
+                    ]),
+                Forms\Components\Select::make('estado')
+                    ->label('¿Estado?')
+                    ->options([
+                        true => 'Activo',
+                        false => 'Inactivo',
                     ])
-                    ->columns(1)
-                    ->collapsible(),
+                    ->default(true)
+                    ->required(),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -91,6 +79,7 @@ class HorariosResource extends Resource
                     ->label('Estado')
                     ->formatStateUsing(fn($state) => $state ? 'Activo' : 'Inactivo')
                     ->badge()
+                    ->sortable()
                     ->color(fn($state) => $state ? 'success' : 'danger'),
             ])
             ->filters([
@@ -103,9 +92,7 @@ class HorariosResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make()->icon('heroicon-m-pencil-square'),
                     Tables\Actions\DeleteAction::make()->icon('heroicon-m-trash'),
-                    ReplicateAction::make()->icon('heroicon-m-document-duplicate'),
                 ]),
             ])
             ->bulkActions([
