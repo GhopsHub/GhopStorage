@@ -6,14 +6,14 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\Resources\HorariosResource;
 
-class Listhorario extends ListRecords
+class ListHorario extends ListRecords
 {
-    protected static string $resource = HorariosResource::class;
+	protected static string $resource = HorariosResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
+	protected function getHeaderActions(): array
+	{
+		return [
+			Actions\CreateAction::make(),
+		];
+	}
 }

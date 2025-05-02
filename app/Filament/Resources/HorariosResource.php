@@ -84,7 +84,7 @@ class HorariosResource extends Resource
 			])
 			->filters([
 				Tables\Filters\SelectFilter::make('estado')
-					->label('Estado')
+					->label('Filtrar por estado')
 					->options([
 						true => 'Activo',
 						false => 'Inactivo',
@@ -118,25 +118,23 @@ class HorariosResource extends Resource
 						})
 						->successNotificationTitle('Estado actualizado correctamente'),
 					Tables\Actions\DeleteBulkAction::make(),
-
 				]),
 			])
-
 			->striped();
 	}
 
-	// public static function getRelations(): array
-	// {
-	//     return [
-	//         //
-	//     ];
-	// }
+	public static function getRelations(): array
+	{
+		return [
+			//
+		];
+	}
 
 	public static function getPages(): array
 	{
 		return [
 			'index' => Pages\ListHorario::route('/'),
-			'create' => Pages\CreateHorarios::route('/create'),
+			'create' => Pages\CreateHorario::route('/create'),
 			'edit' => Pages\EditHorario::route('/{record}/edit'),
 		];
 	}

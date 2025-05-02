@@ -15,55 +15,68 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProyectosResource extends Resource
 {
-    protected static ?string $model = Proyecto::class;
+	protected static ?string $model = Proyecto::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
+	protected static ?string $navigationIcon = 'heroicon-o-clipboard';
 
-    public static function getNavigationSort(): ?int
-    {
-        return 3;
-    }
+	public static function getNavigationSort(): ?int
+	{
+		return 3;
+	}
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
-    }
+	public static function form(Form $form): Form
+	{
+		return $form
+			->schema([
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
 
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListProyectos::route('/'),
-            'create' => Pages\CreateProyectos::route('/create'),
-            'edit' => Pages\EditProyectos::route('/{record}/edit'),
-        ];
-    }
+
+
+
+
+
+				'nombre',
+				'descripcion',
+				'ubicacion',
+				'fecha_inicio',
+				'estado',
+				'responsable',
+			]);
+	}
+
+	public static function table(Table $table): Table
+	{
+		return $table
+			->columns([
+				//
+			])
+			->filters([
+				//
+			])
+			->actions([
+				Tables\Actions\EditAction::make(),
+			])
+			->bulkActions([
+				Tables\Actions\BulkActionGroup::make([
+					Tables\Actions\DeleteBulkAction::make(),
+				]),
+			]);
+	}
+
+	public static function getRelations(): array
+	{
+		return [
+			//
+		];
+	}
+
+	public static function getPages(): array
+	{
+		return [
+			'index' => Pages\ListProyectos::route('/'),
+			'create' => Pages\CreateProyectos::route('/create'),
+			'edit' => Pages\EditProyectos::route('/{record}/edit'),
+		];
+	}
 }
