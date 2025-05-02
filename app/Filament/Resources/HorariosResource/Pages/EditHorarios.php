@@ -6,7 +6,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\HorariosResource;
 
-class EditHorario extends EditRecord
+class EditHorarios extends EditRecord
 {
 	protected static string $resource = HorariosResource::class;
 

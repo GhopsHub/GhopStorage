@@ -133,9 +133,9 @@ class HorariosResource extends Resource
 	public static function getPages(): array
 	{
 		return [
-			'index' => Pages\ListHorario::route('/'),
-			'create' => Pages\CreateHorario::route('/create'),
-			'edit' => Pages\EditHorario::route('/{record}/edit'),
+			'index' => Pages\ListHorarios::route('/'),
+			'create' => Pages\CreateHorarios::route('/create'),
+			'edit' => Pages\EditHorarios::route('/{record}/edit'),
 		];
 	}
 }

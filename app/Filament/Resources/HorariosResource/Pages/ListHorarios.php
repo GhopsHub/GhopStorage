@@ -6,7 +6,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\Resources\HorariosResource;
 
-class ListHorario extends ListRecords
+class ListHorarios extends ListRecords
 {
 	protected static string $resource = HorariosResource::class;
 

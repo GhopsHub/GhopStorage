@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\horariosResource\Pages;
+namespace App\Filament\Resources\HorariosResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\HorariosResource;
 
-class CreateHorario extends CreateRecord
+class CreateHorarios extends CreateRecord
 {
 	protected static string $resource = HorariosResource::class;
 
