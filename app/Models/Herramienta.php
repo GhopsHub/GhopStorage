@@ -22,13 +22,12 @@ class Herramienta extends Model
 	{
 		static::saving(function ($herramienta) {
 			$herramienta->unidades = (int) $herramienta->unidades;
-
 			if ($herramienta->unidades === 0) {
 				$herramienta->estado = 'sin_existencias';
 			} elseif ($herramienta->unidades > 0) {
-				$herramienta->estado = 'disponible';
-			} else {
-				$herramienta->estado = 'no_disponible';
+				if ($herramienta->estado !== 'no_disponible') {
+					$herramienta->estado = 'disponible';
+				}
 			}
 		});
 	}

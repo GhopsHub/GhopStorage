@@ -23,7 +23,7 @@
         "prettier": "^3.4.2",
         "prettier-plugin-organize-imports": "^4.1.0",
         "prettier-plugin-tailwindcss": "^0.6.11",
-        "tailwindcss": "^4.1.4",
+        "tailwindcss": "^4.1.5",
         "typescript-eslint": "^8.23.0",
         "vite": "^6.3.4",
         "vue-tsc": "^2.2.4"
@@ -48,7 +48,6 @@
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
-        "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
         "lightningcss-linux-x64-gnu": "^1.29.1"
     }
 }
