@@ -8,5 +8,11 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateProyectos extends CreateRecord
 {
-    protected static string $resource = ProyectosResource::class;
+	protected static string $resource = ProyectosResource::class;
+
+	//? Redireccion al index posterior a guargar
+	public function getRedirectUrl(): string
+	{
+		return $this->getResource()::getUrl('index');
+	}
 }
